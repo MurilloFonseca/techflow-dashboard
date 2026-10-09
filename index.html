@@ -25,25 +25,25 @@
           }
         };
 
-        const sidebarState = () => {
-          return localStorage.getItem("sidebar") || "open";
-        };
+        // Abaixo de 1024px (lg) a sidebar vira um menu sobreposto e sempre
+        // começa fechada. A preferência só é salva/lida no desktop.
+        const desktop = matchMedia("(min-width: 1024px)");
+
+        const sidebarState = () =>
+          desktop.matches ? localStorage.getItem("sidebar") || "open" : "closed";
 
         const setSidebar = (state) => {
-          if (state === "open") {
-            document.querySelector("aside").classList.remove("hidden");
-            document.getElementById("sidebar-open").classList.add("hidden");
-            localStorage.setItem("sidebar", "open");
-          } else {
-            document.querySelector("aside").classList.add("hidden");
-            document.getElementById("sidebar-open").classList.remove("hidden");
-            localStorage.setItem("sidebar", "closed");
-          }
+          document.documentElement.setAttribute("data-sidebar", state);
+          if (desktop.matches) localStorage.setItem("sidebar", state);
         };
 
         if (!document.documentElement.hasAttribute("data-theme")) {
           setTheme(localStorage.getItem("theme") || "system");
         }
+
+        // Define o estado antes da primeira pintura (evita a sidebar "piscar")
+        document.documentElement.setAttribute("data-sidebar", sidebarState());
+        desktop.addEventListener("change", () => setSidebar(sidebarState()));
 
         window.addEventListener(
           "storage",
@@ -57,8 +57,6 @@
             });
           });
 
-          if (sidebarState() === "closed") setSidebar("closed");
-
           document
             .getElementById("sidebar-open")
             .addEventListener("click", () => {
@@ -70,6 +68,23 @@
             .addEventListener("click", () => {
               setSidebar("closed");
             });
+
+          // Celular/tablet: fecha o menu ao tocar no fundo, em um link ou com Esc
+          const closeOnMobile = () => {
+            if (!desktop.matches) setSidebar("closed");
+          };
+
+          document
+            .getElementById("sidebar-backdrop")
+            .addEventListener("click", closeOnMobile);
+
+          document
+            .querySelectorAll("aside a")
+            .forEach((el) => el.addEventListener("click", closeOnMobile));
+
+          document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape") closeOnMobile();
+          });
         });
 
         matchMedia("(prefers-color-scheme: dark)").addEventListener(
@@ -89,17 +104,26 @@
       })();
     </script>
   </head>
-  <body>
+  <body class="max-lg:in-data-[sidebar=open]:overflow-hidden">
     <div
       id="app"
-      class="flex min-h-screen bg-base-light dark:bg-base-dark text-base-dark dark:text-base-light"
+      class="flex min-h-dvh bg-base-light dark:bg-base-dark text-base-dark dark:text-base-light"
     >
+      <!-- Fundo escuro do menu (somente abaixo de lg) -->
+      <div
+        id="sidebar-backdrop"
+        aria-hidden="true"
+        class="fixed inset-0 z-30 bg-black/50 lg:hidden max-lg:in-data-[sidebar=closed]:hidden"
+      ></div>
+
       <aside
-        class="flex flex-col bg-bold-light dark:bg-bold-dark w-80 gap-5 px-2"
+        class="fixed inset-y-0 left-0 z-40 flex w-72 max-w-[85vw] flex-col gap-5 overflow-y-auto bg-bold-light px-2 shadow-xl dark:bg-bold-dark lg:static lg:w-80 lg:max-w-none lg:shrink-0 lg:overflow-visible lg:shadow-none in-data-[sidebar=closed]:hidden!"
       >
         <button
+          type="button"
           id="sidebar-close"
-          class="mb-10 mt-5 self-baseline-last cursor-pointer"
+          aria-label="Fechar menu"
+          class="mb-8 mt-3 self-baseline-last cursor-pointer p-2"
         >
           <svg
             class="dark:fill-base-light fill-base-dark"
@@ -119,12 +143,12 @@
             name="busca"
             placeholder="Digite sua busca..."
             required
-            class="peer w-50 bg-base-light rounded-xl px-3 py-2 outline-none dark:bg-base-dark"
+            class="peer min-w-0 flex-1 bg-base-light rounded-xl px-3 py-2 outline-none dark:bg-base-dark"
           />
 
           <button
             type="submit"
-            class="bg-base-light rounded-2xl h-10 w-20 text-base-dark hover:bg-base-grey hover:text-bold-dark hover:font-bold transition-all dark:bg-base-dark dark:text-base-light dark:hover:text-bold-dark peer-placeholder-shown:opacity-50 peer-placeholder-shown:cursor-not-allowed cursor-pointer"
+            class="bg-base-light rounded-2xl h-10 w-20 shrink-0 text-base-dark hover:bg-base-grey hover:text-bold-dark hover:font-bold transition-all dark:bg-base-dark dark:text-base-light dark:hover:text-bold-dark peer-placeholder-shown:opacity-50 peer-placeholder-shown:cursor-not-allowed cursor-pointer"
           >
             Buscar
           </button>
@@ -142,12 +166,17 @@
         >
       </aside>
 
-      <main class="flex flex-col w-full">
+      <main class="flex min-w-0 flex-1 flex-col">
         <header
-          class="bg-bold-light dark:bg-bold-dark w-full h-15 flex flex-row justify-between items-center px-4"
+          class="bg-bold-light dark:bg-bold-dark w-full h-15 flex flex-row justify-between items-center gap-2 px-3 sm:px-4"
         >
-          <div class="flex gap-3">
-            <button class="hidden" id="sidebar-open">
+          <div class="flex min-w-0 items-center gap-2 sm:gap-3">
+            <button
+              type="button"
+              id="sidebar-open"
+              aria-label="Abrir menu"
+              class="-ml-2 cursor-pointer p-2 in-data-[sidebar=open]:hidden"
+            >
               <svg
                 class="dark:fill-base-light fill-base-dark"
                 xmlns="http://www.w3.org/2000/svg"
@@ -162,14 +191,14 @@
             </button>
 
             <a
-              class="text-bold-dark dark:text-bold-light font-bold font-sansation-bold text-5xl"
+              class="text-bold-dark dark:text-bold-light font-bold font-sansation-bold whitespace-nowrap text-xl min-[420px]:text-2xl sm:text-4xl lg:text-5xl"
               href="#"
               >🖥️TechFlow</a
             >
           </div>
 
           <div
-            class="relative flex flex-row items-center rounded-full border-2 border-bold-light bg-base-light dark:border-bold-dark dark:bg-base-dark"
+            class="relative flex shrink-0 flex-row items-center rounded-full border-2 border-bold-light bg-base-light dark:border-bold-dark dark:bg-base-dark"
           >
             <div
               class="absolute left-0 h-full w-1/3 rounded-full border border-base-dark dark:border-base-light brightness-200 transition-[left] in-data-[theme=light]:left-1/3 in-data-[theme=dark]:left-2/3 in-data-[theme-source=system]:left-0!"
@@ -178,7 +207,7 @@
             <!-- System -->
             <button
               type="button"
-              class="flex w-1/3 cursor-pointer p-2"
+              class="flex w-1/3 cursor-pointer p-1.5 sm:p-2"
               data-theme="system"
               aria-label="System theme"
             >
@@ -200,7 +229,7 @@
             <!-- Light -->
             <button
               type="button"
-              class="flex w-1/3 cursor-pointer p-2"
+              class="flex w-1/3 cursor-pointer p-1.5 sm:p-2"
               data-theme="light"
               aria-label="Light theme"
             >
@@ -220,7 +249,7 @@
             <!-- Dark -->
             <button
               type="button"
-              class="flex w-1/3 cursor-pointer p-2"
+              class="flex w-1/3 cursor-pointer p-1.5 sm:p-2"
               data-theme="dark"
               aria-label="Dark theme"
             >
@@ -239,20 +268,20 @@
           </div>
         </header>
 
-        <section class="px-10 pt-5">
+        <section class="px-4 pt-5 sm:px-6 lg:px-10">
           <div
-            class="flex flex-col gap-3 max-w-sm w-full lg:max-w-full lg:flex"
+            class="flex w-full flex-col gap-3"
           >
             <div class="flex flex-row items-center justify-between">
               <h2
-                class="text-2xl ml-6 dark:text-base-light font-sansation-bold"
+                class="text-2xl ml-2 sm:ml-6 dark:text-base-light font-sansation-bold"
               >
                 Projetos
               </h2>
               <button
                 type="button"
                 id="open-project-modal"
-                class="cursor-pointer text-4xl mr-3"
+                class="flex size-11 cursor-pointer items-center justify-center text-4xl leading-none sm:mr-3"
               >
                 +
               </button>
@@ -261,33 +290,36 @@
           </div>
         </section>
 
-        <section class="px-10 pt-5">
-          <div id="projects-grid" class="gap-4 grid grid-cols-3">
+        <section class="px-4 pt-5 pb-8 sm:px-6 lg:px-10">
+          <div
+            id="projects-grid"
+            class="grid grid-cols-[repeat(auto-fill,minmax(16rem,1fr))] gap-4"
+          >
             <div
-              class="bg-base-grey h-50 w-75 rounded-2xl dark:bg-bold-dark hover:scale-110 hover:shadow-lg transition-all justify-self-center overflow-y-auto scrollbar-none"
+              class="bg-base-grey min-h-50 rounded-2xl pb-4 dark:bg-bold-dark sm:hover:scale-105 hover:z-10 hover:shadow-lg transition-all"
             >
               <h2
-                class="text-bold-dark font-bold text-lg pt-3 ml-5 dark:text-bold-light"
+                class="text-bold-dark font-bold text-lg pt-3 ml-5 pr-5 dark:text-bold-light"
               >
                 Plataforma de E-commerce
               </h2>
               <div
-                class="bg-vermelho w-20 ml-50 text-bold-light font-bold rounded-4xl pl-1"
+                class="bg-vermelho w-fit ml-auto mr-5 px-3 text-bold-light font-bold rounded-4xl"
               >
                 Pendente
               </div>
               <p
-                class="text-base-dark font-light ml-5 dark:text-base-light text-sm"
+                class="text-base-dark font-light ml-5 pr-5 dark:text-base-light text-sm"
               >
                 Responsável: Mariana Costa
               </p>
               <p
-                class="text-base-dark font-light ml-5 dark:text-base-light text-sm"
+                class="text-base-dark font-light ml-5 pr-5 dark:text-base-light text-sm"
               >
                 Categoria: Desenvolvimento Web
               </p>
               <p
-                class="text-base-dark font-light ml-5 dark:text-base-light text-sm"
+                class="text-base-dark font-light ml-5 pr-5 dark:text-base-light text-sm"
               >
                 Prioridade: Alta
               </p>
@@ -297,7 +329,7 @@
                 Prazo: 30/10/2026
               </p>
               <p
-                class="text-base-dark font-light ml-5 dark:text-base-light mt-3"
+                class="text-base-dark font-light ml-5 pr-5 dark:text-base-light mt-3"
               >
                 Desenvolvimento de uma loja virtual com catálogo de produtos,
                 carrinho de compras, integração com pagamentos e painel
@@ -305,30 +337,30 @@
               </p>
             </div>
             <div
-              class="bg-base-grey h-50 w-75 rounded-2xl dark:bg-bold-dark hover:scale-110 hover:shadow-lg transition-all justify-self-center overflow-y-auto scrollbar-none"
+              class="bg-base-grey min-h-50 rounded-2xl pb-4 dark:bg-bold-dark sm:hover:scale-105 hover:z-10 hover:shadow-lg transition-all"
             >
               <h2
-                class="text-bold-dark font-bold text-lg pt-3 ml-5 dark:text-bold-light"
+                class="text-bold-dark font-bold text-lg pt-3 ml-5 pr-5 dark:text-bold-light"
               >
                 Dashboard de Indicadores
               </h2>
               <div
-                class="bg-amarelo w-31 ml-40 text-bold-light font-bold rounded-4xl pl-1 mr-4 focus:outline-2"
+                class="bg-amarelo w-fit ml-auto mr-5 px-3 text-bold-light font-bold rounded-4xl focus:outline-2"
               >
                 Em Andamento
               </div>
               <p
-                class="text-base-dark font-light ml-5 dark:text-base-light text-sm"
+                class="text-base-dark font-light ml-5 pr-5 dark:text-base-light text-sm"
               >
                 Responsável: Rafael Mendes
               </p>
               <p
-                class="text-base-dark font-light ml-5 dark:text-base-light text-sm"
+                class="text-base-dark font-light ml-5 pr-5 dark:text-base-light text-sm"
               >
                 Categoria: Análise de Dados
               </p>
               <p
-                class="text-base-dark font-light ml-5 dark:text-base-light text-sm"
+                class="text-base-dark font-light ml-5 pr-5 dark:text-base-light text-sm"
               >
                 Prioridade: Média
               </p>
@@ -338,7 +370,7 @@
                 Prazo: 15/11/2026
               </p>
               <p
-                class="text-base-dark font-light ml-5 dark:text-base-light mt-3"
+                class="text-base-dark font-light ml-5 pr-5 dark:text-base-light mt-3"
               >
                 Criação de um painel interativo para acompanhar métricas de
                 vendas, faturamento e desempenho operacional, com gráficos,
@@ -346,30 +378,30 @@
               </p>
             </div>
             <div
-              class="bg-base-grey h-50 w-75 rounded-2xl dark:bg-bold-dark hover:scale-110 hover:shadow-lg transition-all justify-self-center overflow-y-auto scrollbar-none"
+              class="bg-base-grey min-h-50 rounded-2xl pb-4 dark:bg-bold-dark sm:hover:scale-105 hover:z-10 hover:shadow-lg transition-all"
             >
               <h2
-                class="text-bold-dark font-bold text-lg pt-3 ml-5 dark:text-bold-light"
+                class="text-bold-dark font-bold text-lg pt-3 ml-5 pr-5 dark:text-bold-light"
               >
                 Aplicativo de Gestão de Tarefas
               </h2>
               <div
-                class="bg-verde w-21 ml-50 text-bold-light font-bold rounded-4xl pl-1 mr-4"
+                class="bg-verde w-fit ml-auto mr-5 px-3 text-bold-light font-bold rounded-4xl"
               >
                 Concluída
               </div>
               <p
-                class="text-base-dark font-light ml-5 dark:text-base-light text-sm"
+                class="text-base-dark font-light ml-5 pr-5 dark:text-base-light text-sm"
               >
                 Responsável: Camila Oliveira
               </p>
               <p
-                class="text-base-dark font-light ml-5 dark:text-base-light text-sm"
+                class="text-base-dark font-light ml-5 pr-5 dark:text-base-light text-sm"
               >
                 Categoria: Aplicativos Mobile
               </p>
               <p
-                class="text-base-dark font-light ml-5 dark:text-base-light text-sm"
+                class="text-base-dark font-light ml-5 pr-5 dark:text-base-light text-sm"
               >
                 Prioridade: Alta
               </p>
@@ -379,7 +411,7 @@
                 Prazo: 10/12/2026
               </p>
               <p
-                class="text-base-dark font-light ml-5 dark:text-base-light mt-3"
+                class="text-base-dark font-light ml-5 pr-5 dark:text-base-light mt-3"
               >
                 Desenvolvimento de um aplicativo para organização de tarefas
                 pessoais e profissionais, com notificações, definição de
@@ -397,7 +429,7 @@
     >
       <div
         role="dialog"
-        class="w-full max-w-xl rounded-2xl bg-base-light dark:bg-base-dark text-base-dark dark:text-base-light shadow-2xl p-6 my-auto"
+        class="w-full max-w-xl rounded-2xl bg-base-light dark:bg-base-dark text-base-dark dark:text-base-light shadow-2xl p-4 sm:p-6 my-auto"
       >
         <div class="flex items-center justify-between mb-5">
           <h2
@@ -555,17 +587,17 @@
             ></textarea>
           </div>
 
-          <div class="sm:col-span-2 flex justify-end gap-3 pt-2">
+          <div class="sm:col-span-2 flex flex-col-reverse gap-3 pt-2 sm:flex-row sm:justify-end">
             <button
               type="button"
               data-close-modal
-              class="cursor-pointer rounded-2xl h-10 px-5 bg-base-grey dark:bg-base-dark hover:font-bold transition-all"
+              class="cursor-pointer rounded-2xl h-11 px-5 sm:h-10 bg-base-grey dark:bg-base-dark hover:font-bold transition-all"
             >
               Cancelar
             </button>
             <button
               type="submit"
-              class="cursor-pointer rounded-2xl h-10 px-5 font-bold bg-bold-dark text-bold-light dark:bg-bold-light dark:text-bold-dark hover:opacity-90 transition-opacity"
+              class="cursor-pointer rounded-2xl h-11 px-5 sm:h-10 font-bold bg-bold-dark text-bold-light dark:bg-bold-light dark:text-bold-dark hover:opacity-90 transition-opacity"
             >
               Criar projeto
             </button>
@@ -577,14 +609,14 @@
     <!-- Template do card criado pelo modal -->
     <template id="project-card-template">
       <div
-        class="bg-base-grey h-50 w-75 rounded-2xl dark:bg-bold-dark hover:scale-110 hover:shadow-lg transition-all justify-self-center overflow-y-auto scrollbar-none"
+        class="bg-base-grey min-h-50 rounded-2xl pb-4 dark:bg-bold-dark sm:hover:scale-105 hover:z-10 hover:shadow-lg transition-all"
       >
         <h2
           data-field="nome"
           class="text-bold-dark font-bold text-lg pt-3 ml-5 pr-5 truncate dark:text-bold-light"
         ></h2>
         <div
-          class="bg-vermelho w-20 ml-50 text-bold-light font-bold rounded-4xl pl-1"
+          class="bg-vermelho w-fit ml-auto mr-5 px-3 text-bold-light font-bold rounded-4xl"
         >
           Pendente
         </div>

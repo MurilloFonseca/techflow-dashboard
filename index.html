@@ -64,13 +64,23 @@
       id="app"
       class="flex w-screen h-screen bg-base-light dark:bg-base-dark text-base-dark dark:text-base-light"
     >
-      <aside class="bg-bold-light dark:bg-bold-dark w-60">teste</aside>
+      <aside class="bg-bold-light dark:bg-bold-dark w-60">
+
+        <form action="pagina_de_resultados.php" method="GET" class="bg-base-light rounded-xl">
+        <input type="text" name="busca" placeholder="Digite sua busca...">
+      </form>
+      <button type="submit"
+        class="mt-2 bg-base-dark rounded-2xl h-10 w-20 text-base-light hover:bg-base-light hover:text-base-dark transi">Buscar</button>
+      <a href="#" class="text-bold-dark font-bold  font-dm-mono-light ml-2 hover:text-lg transition-all">Projetos</a>
+      <a href="#" class="text-bold-dark font-bold font-dm-mono-light ml-2 hover:text-lg transition-all">Equipes</a>
+      </aside>
 
       <main class="flex flex-col w-full">
         <header
           class="bg-bold-light dark:bg-bold-dark w-full h-15 flex flex-row justify-between items-center px-4"
         >
-          <span class="font-bold font-sansation-bold">TechFlow</span>
+          <span class="text-bold-dark font-bold font-sansation-bold text-5xl ml-1 pt-9">🖥️TechFlow</span>
+    </nav>
 
           <div
             class="relative flex flex-row items-center rounded-full border-2 border-bold-light bg-base-light dark:border-bold-dark dark:bg-base-dark"
@@ -142,6 +152,13 @@
             </button>
           </div>
         </header>
+
+        <h1 class="text-bold-dark">Tarefas Pendentes</h1>
+      <div class="max-w-sm w-full lg:max-w-full lg:flex">
+        <div class="h-48 lg:h-auto lg:w-48 bg-base-grey">
+          <h2>Projetos Pendentes</h2>
+        </div>
+      </div>
 
         <footer></footer>
       </main>

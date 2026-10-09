@@ -65,27 +65,41 @@
       class="flex w-screen h-screen bg-base-light dark:bg-base-dark text-base-dark dark:text-base-light"
     >
       <aside class="bg-bold-light dark:bg-bold-dark w-60 pt-20 flex flex-col">
-        <form
-          action="pagina_de_resultados.php"
-          method="GET"
-          class="bg-base-light rounded-xl"
-        >
-          <input type="text" name="busca" placeholder="Digite sua busca..." />
-        </form>
-        <button
-          type="submit"
-          class="mt-2 bg-base-dark rounded-2xl h-10 w-20 text-base-light hover:bg-base-light hover:text-base-dark transi"
-        >
-          Buscar
-        </button>
+        <div>
+  <form
+    action="/"
+    method="GET"
+  >
+    <input
+      type="text"
+      name="busca"
+      placeholder="Digite sua busca..."
+      required
+      class="peer w-50 bg-base-light rounded-xl px-3 py-2 outline-none dark:bg-base-dark"
+    />
+
+    <button
+      type="submit"
+      class="mt-2 bg-base-light rounded-2xl h-10 w-20 text-base-dark
+             hover:bg-base-grey hover:text-bold-dark hover:font-bold
+             transition-all
+             dark:bg-base-dark dark:text-base-light dark:hover:text-bold-dark
+             peer-placeholder-shown:opacity-50
+             peer-placeholder-shown:pointer-events-none
+             peer-placeholder-shown:cursor-not-allowed"
+    >
+      Buscar
+    </button>
+  </form>
+ </div>
         <a
           href="#"
-          class="text-bold-dark font-bold font-dm-mono-light ml-2 hover:text-lg transition-all"
+          class="text-bold-dark font-dm-mono-light ml-2 hover:text-lg hover:font-bold transition-all dark:text-base-light dark:hover:text-bold-light"
           >Projetos</a
         >
         <a
           href="#"
-          class="text-bold-dark font-bold font-dm-mono-light ml-2 hover:text-lg transition-all"
+          class="text-bold-dark font-dm-mono-light ml-2 hover:text-lg hover:font-bold transition-all dark:text-base-light dark:hover:text-bold-light"
           >Equipes</a
         >
       </aside>
@@ -94,9 +108,9 @@
         <header
           class="bg-bold-light dark:bg-bold-dark w-full h-15 flex flex-row justify-between items-center px-4"
         >
-          <span
-            class="text-bold-dark dark:text-bold-light font-bold font-sansation-bold text-5xl"
-            >🖥️TechFlow</span
+          <a
+            class="text-bold-dark dark:text-bold-light font-bold font-sansation-bold text-5xl "href="./"
+            >🖥️TechFlow</a
           >
 
           <div
@@ -172,16 +186,37 @@
 
         <section class="px-10 pt-5">
           <div class="max-w-sm w-full lg:max-w-full lg:flex">
-            <div class="h-48 lg:h-auto lg:w-65 bg-base-grey rounded-lg text-base-dark">
-              <h2 class="text-2xl ml-6">Projetos Pendentes</h2>
+            <div class="h-48 lg:h-auto lg:w-35 bg-base-grey rounded-lg text-base-dark dark:bg-bold-dark">
+              <h2 class="text-2xl ml-6 dark:text-base-light">Projetos</h2>
             </div>
           </div>
         </section>
         <section class="px-10 pt-5">
-          <div class="bg-base-dark h-50 w-75 rounded-2xl">
-            <h2 class="text-bold-light font-bold text-lg pt-3 ml-5">Tarefa 1</h2>
-            <div class="bg-vermelho w-20 ml-50 text-bold-light font-bold rounded-4xl pl-1">Pendente</div>
-            <p class="text-base-light font-light ml-5">dsadsadas</p>
+          <div class="flex gap-4">
+            <div class="bg-base-grey h-50 w-75 rounded-2xl dark:bg-bold-dark hover:scale-110 hover:shadow-lg transition-all">
+              <h2 class="text-bold-dark font-bold text-lg pt-3 ml-5 dark:text-bold-light ">Tarefa 1</h2>
+              <div class="bg-vermelho w-20 ml-50 text-bold-light font-bold rounded-4xl pl-1">Pendente</div>
+              <p class="text-base-dark font-light ml-5 dark:text-base-light text-sm">Responsável: </p>
+              <p class="text-base-dark font-light ml-5 dark:text-base-light text-sm">Categoria:</p>
+              <p class="text-base-dark font-light ml-5 dark:text-base-light text-sm">Prioridade:</p>
+              <p class="text-base-dark font-light ml-5 dark:text-base-light">Essa é a Tarefa 1</p>
+            </div>
+            <div class="bg-base-grey h-50 w-75 rounded-2xl dark:bg-bold-dark hover:scale-110 hover:shadow-lg transition-all">
+              <h2 class="text-bold-dark font-bold text-lg pt-3 ml-5 dark:text-bold-light">Tarefa 2</h2>
+              <div class="bg-amarelo w-31 ml-40 text-bold-light font-bold rounded-4xl pl-1 mr-4 focus:outline-2">Em Andamento</div>
+              <p class="text-base-dark font-light ml-5 dark:text-base-light text-sm">Responsável: </p>
+              <p class="text-base-dark font-light ml-5 dark:text-base-light text-sm">Categoria:</p>
+              <p class="text-base-dark font-light ml-5 dark:text-base-light text-sm">Prioridade:</p>
+              <p class="text-base-dark font-light ml-5 dark:text-base-light">Essa é a Tarefa 2</p>
+            </div>
+            <div class="bg-base-grey h-50 w-75 rounded-2xl dark:bg-bold-dark hover:scale-110 hover:shadow-lg transition-all">
+              <h2 class="text-bold-dark font-bold text-lg pt-3 ml-5 dark:text-bold-light">Tarefa 3</h2>
+              <div class="bg-verde w-21 ml-50 text-bold-light font-bold rounded-4xl pl-1 mr-4">Concluída</div>
+              <p class="text-base-dark font-light ml-5 dark:text-base-light text-sm">Responsável: </p>
+              <p class="text-base-dark font-light ml-5 dark:text-base-light text-sm">Categoria:</p>
+              <p class="text-base-dark font-light ml-5 dark:text-base-light text-sm">Prioridade:</p>
+              <p class="text-base-dark font-light ml-5 dark:text-base-light">Essa é a Tarefa 3</p>
+            </div>
           </div>
         </section>
         <footer></footer>

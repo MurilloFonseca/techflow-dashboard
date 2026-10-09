@@ -64,7 +64,7 @@
       id="app"
       class="flex w-screen h-screen bg-base-light dark:bg-base-dark text-base-dark dark:text-base-light"
     >
-      <aside class="bg-bold-light dark:bg-bold-dark w-60 pt-20">
+      <aside class="bg-bold-light dark:bg-bold-dark w-60 pt-20 flex flex-col">
         <form
           action="pagina_de_resultados.php"
           method="GET"
@@ -171,14 +171,19 @@
         </header>
 
         <section class="px-10 pt-5">
-          <h1 class="text-bold-dark dark:text-bold-light">Tarefas Pendentes</h1>
           <div class="max-w-sm w-full lg:max-w-full lg:flex">
-            <div class="h-48 lg:h-auto lg:w-48 bg-base-grey text-base-dark">
-              <h2>Projetos Pendentes</h2>
+            <div class="h-48 lg:h-auto lg:w-65 bg-base-grey rounded-lg text-base-dark">
+              <h2 class="text-2xl ml-6">Projetos Pendentes</h2>
             </div>
           </div>
         </section>
-
+        <section class="px-10 pt-5">
+          <div class="bg-base-dark h-50 w-75 rounded-2xl">
+            <h2 class="text-bold-light font-bold text-lg pt-3 ml-5">Tarefa 1</h2>
+            <div class="bg-vermelho w-20 ml-50 text-bold-light font-bold rounded-4xl pl-1">Pendente</div>
+            <p class="text-base-light font-light ml-5">dsadsadas</p>
+          </div>
+        </section>
         <footer></footer>
       </main>
     </div>

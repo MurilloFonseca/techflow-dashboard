@@ -422,109 +422,6 @@
             </div>
           </div>
         </section>
-
-        <section class="px-4 pt-5 sm:px-6 lg:px-10">
-          <div class="flex w-full flex-col gap-3">
-            <div class="flex flex-row items-center justify-between">
-              <h2
-                class="text-2xl ml-2 sm:ml-6 dark:text-base-light font-sansation-bold"
-              >
-                Equipes
-              </h2>
-              <button
-                type="button"
-                id="open-team-modal"
-                aria-label="Adicionar nova equipe"
-                aria-haspopup="dialog"
-                aria-controls="team-modal"
-                class="flex size-11 cursor-pointer items-center justify-center text-4xl leading-none sm:mr-3"
-              >
-                +
-              </button>
-            </div>
-            <hr class="w-full" />
-          </div>
-        </section>
-
-        <section class="px-4 pt-5 pb-8 sm:px-6 lg:px-10">
-          <div
-            id="teams-grid"
-            class="grid grid-cols-[repeat(auto-fill,minmax(16rem,1fr))] gap-4"
-          >
-            <div
-              class="bg-base-grey min-h-35 mt-5 rounded-2xl dark:bg-bold-dark hover:scale-110 hover:shadow-lg transition-all flex flex-col gap-3"
-            >
-              <h2
-                class="text-bold-dark font-bold text-lg pt-3 ml-5 dark:text-bold-light"
-              >
-                Equipe 1
-              </h2>
-              <p
-                class="text-base-dark font-light ml-5 dark:text-base-light text-sm"
-              >
-                Responsável: Membro Chefe
-              </p>
-              <div>
-                <p
-                  class="text-base-dark font-light ml-5 dark:text-base-light text-sm"
-                >
-                  Membros:
-                </p>
-                <p class="text-base-dark font-light ml-5 dark:text-base-light">
-                  Membro 1,Membro 2,Membro 3
-                </p>
-              </div>
-            </div>
-            <div
-              class="bg-base-grey min-h-35 mt-5 rounded-2xl dark:bg-bold-dark hover:scale-110 hover:shadow-lg transition-all flex flex-col gap-3"
-            >
-              <h2
-                class="text-bold-dark font-bold text-lg pt-3 ml-5 dark:text-bold-light"
-              >
-                Equipe 1
-              </h2>
-              <p
-                class="text-base-dark font-light ml-5 dark:text-base-light text-sm"
-              >
-                Responsável: Membro Chefe
-              </p>
-              <div>
-                <p
-                  class="text-base-dark font-light ml-5 dark:text-base-light text-sm"
-                >
-                  Membros:
-                </p>
-                <p class="text-base-dark font-light ml-5 dark:text-base-light">
-                  Membro 1,Membro 2,Membro 3
-                </p>
-              </div>
-            </div>
-            <div
-              class="bg-base-grey min-h-35 mt-5 rounded-2xl dark:bg-bold-dark hover:scale-110 hover:shadow-lg transition-all flex flex-col gap-3"
-            >
-              <h2
-                class="text-bold-dark font-bold text-lg pt-3 ml-5 dark:text-bold-light"
-              >
-                Equipe 1
-              </h2>
-              <p
-                class="text-base-dark font-light ml-5 dark:text-base-light text-sm"
-              >
-                Responsável: Membro Chefe
-              </p>
-              <div>
-                <p
-                  class="text-base-dark font-light ml-5 dark:text-base-light text-sm"
-                >
-                  Membros:
-                </p>
-                <p class="text-base-dark font-light ml-5 dark:text-base-light">
-                  Membro 1,Membro 2,Membro 3
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
       </main>
     </div>
     <!-- Modal: novo projeto -->
@@ -576,7 +473,7 @@
               required
               title="Informe o nome do projeto"
               placeholder="Ex.: Redesign do portal"
-              class="w-full rounded-xl bg-base-grey dark:bg-bold-dark px-3 py-2 outline-none focus:ring-2 focus:ring-bold-dark dark:focus:ring-bold-light"
+              class="w-full rounded-xl bg-base-grey dark:bg-base-dark px-3 py-2 outline-none focus:ring-2 focus:ring-bold-dark dark:focus:ring-bold-light"
             />
           </div>
 
@@ -593,7 +490,7 @@
               required
               title="Informe o responsável"
               placeholder="Ex.: Ana Souza"
-              class="w-full rounded-xl bg-base-grey dark:bg-bold-dark px-3 py-2 outline-none focus:ring-2 focus:ring-bold-dark dark:focus:ring-bold-light"
+              class="w-full rounded-xl bg-base-grey dark:bg-base-dark px-3 py-2 outline-none focus:ring-2 focus:ring-bold-dark dark:focus:ring-bold-light"
             />
           </div>
 
@@ -610,7 +507,7 @@
               required
               title="Informe a categoria"
               placeholder="Ex.: Desenvolvimento"
-              class="w-full rounded-xl bg-base-grey dark:bg-bold-dark px-3 py-2 outline-none focus:ring-2 focus:ring-bold-dark dark:focus:ring-bold-light"
+              class="w-full rounded-xl bg-base-grey dark:bg-base-dark px-3 py-2 outline-none focus:ring-2 focus:ring-bold-dark dark:focus:ring-bold-light"
             />
           </div>
 
@@ -625,7 +522,7 @@
                 id="project-prioridade"
                 name="prioridade"
                 required
-                class="w-full appearance-none cursor-pointer rounded-xl bg-base-grey dark:bg-bold-dark px-3 py-2 pr-10 outline-none focus:ring-2 focus:ring-bold-dark dark:focus:ring-bold-light invalid:text-base-dark/60 dark:invalid:text-base-light/60"
+                class="w-full appearance-none cursor-pointer rounded-xl bg-base-grey dark:bg-base-dark px-3 py-2 pr-10 outline-none focus:ring-2 focus:ring-bold-dark dark:focus:ring-bold-light invalid:text-base-dark/60 dark:invalid:text-base-light/60"
               >
                 <option value="" disabled selected hidden>Selecione...</option>
                 <option
@@ -673,7 +570,7 @@
               name="prazo"
               type="date"
               required
-              class="w-full rounded-xl bg-base-grey dark:bg-bold-dark px-3 py-2 outline-none focus:ring-2 focus:ring-bold-dark dark:focus:ring-bold-light dark:scheme-dark"
+              class="w-full rounded-xl bg-base-grey dark:bg-base-dark px-3 py-2 outline-none focus:ring-2 focus:ring-bold-dark dark:focus:ring-bold-light dark:scheme-dark"
             />
           </div>
 
@@ -688,7 +585,7 @@
               name="descricao"
               rows="4"
               placeholder="Descreva brevemente o projeto"
-              class="w-full resize-none rounded-xl bg-base-grey dark:bg-bold-dark px-3 py-2 outline-none focus:ring-2 focus:ring-bold-dark dark:focus:ring-bold-light"
+              class="w-full resize-none rounded-xl bg-base-grey dark:bg-base-dark px-3 py-2 outline-none focus:ring-2 focus:ring-bold-dark dark:focus:ring-bold-light"
             ></textarea>
           </div>
 
@@ -698,7 +595,7 @@
             <button
               type="button"
               data-close-modal
-              class="cursor-pointer rounded-2xl h-11 px-5 sm:h-10 bg-base-grey dark:bg-bold-dark hover:font-bold transition-all"
+              class="cursor-pointer rounded-2xl h-11 px-5 sm:h-10 bg-base-grey dark:bg-base-dark hover:font-bold transition-all"
             >
               Cancelar
             </button>
@@ -749,188 +646,6 @@
           data-field="descricao"
           class="text-base-dark font-light ml-5 pr-5 line-clamp-2 dark:text-base-light mt-3"
         ></p>
-      </div>
-    </template>
-
-    <!-- Modal: nova equipe -->
-    <div
-      id="team-modal"
-      class="hidden fixed inset-0 z-50 items-center justify-center bg-black/50 p-4 overflow-y-auto"
-    >
-      <div
-        role="dialog"
-        class="w-full max-w-xl rounded-2xl bg-base-light dark:bg-base-dark text-base-dark dark:text-base-light shadow-2xl p-4 sm:p-6 my-auto"
-      >
-        <div class="flex items-center justify-between mb-5">
-          <h2
-            id="team-modal-title"
-            class="text-2xl font-sansation-bold text-bold-dark dark:text-bold-light"
-          >
-            Nova equipe
-          </h2>
-          <button
-            type="button"
-            data-close-modal
-            class="cursor-pointer rounded-full p-1 hover:bg-base-grey dark:hover:bg-bold-dark transition-colors"
-          >
-            <svg
-              class="dark:fill-base-light fill-base-dark"
-              xmlns="http://www.w3.org/2000/svg"
-              height="24px"
-              viewBox="0 -960 960 960"
-              width="24px"
-              aria-hidden="true"
-            >
-              <path
-                d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"
-              />
-            </svg>
-          </button>
-        </div>
-
-        <form id="team-form" class="flex flex-col gap-4">
-          <div>
-            <label
-              for="team-nome"
-              class="block mb-1 text-sm font-bold text-bold-dark dark:text-bold-light"
-              >Nome da equipe</label
-            >
-            <input
-              id="team-nome"
-              name="nome"
-              type="text"
-              required
-              title="Informe o nome da equipe"
-              placeholder="Ex.: Time de Plataforma"
-              class="w-full rounded-xl bg-base-grey dark:bg-bold-dark px-3 py-2 outline-none focus:ring-2 focus:ring-bold-dark dark:focus:ring-bold-light"
-            />
-          </div>
-
-          <div>
-            <label
-              for="team-responsavel"
-              class="block mb-1 text-sm font-bold text-bold-dark dark:text-bold-light"
-              >Responsável</label
-            >
-            <input
-              id="team-responsavel"
-              name="responsavel"
-              type="text"
-              required
-              title="Informe o responsável"
-              placeholder="Ex.: Ana Souza"
-              class="w-full rounded-xl bg-base-grey dark:bg-bold-dark px-3 py-2 outline-none focus:ring-2 focus:ring-bold-dark dark:focus:ring-bold-light"
-            />
-          </div>
-
-          <div>
-            <label
-              for="team-membro"
-              class="block mb-1 text-sm font-bold text-bold-dark dark:text-bold-light"
-              >Membros</label
-            >
-            <div class="flex gap-2">
-              <input
-                id="team-membro"
-                type="text"
-                autocomplete="off"
-                placeholder="Nome do membro"
-                class="min-w-0 flex-1 rounded-xl bg-base-grey dark:bg-bold-dark px-3 py-2 outline-none focus:ring-2 focus:ring-bold-dark dark:focus:ring-bold-light aria-invalid:ring-2 aria-invalid:ring-vermelho focus:aria-invalid:ring-vermelho"
-              />
-              <button
-                type="button"
-                id="team-add-member"
-                class="shrink-0 cursor-pointer rounded-xl px-4 font-bold bg-base-grey dark:bg-bold-dark hover:bg-bold-dark hover:text-bold-light dark:hover:bg-bold-light dark:hover:text-bold-dark transition-colors"
-              >
-                Adicionar
-              </button>
-            </div>
-
-            <p
-              id="team-members-msg"
-              role="status"
-              class="mt-2 text-sm font-bold text-bold-dark dark:text-bold-light empty:hidden"
-            ></p>
-
-            <p id="team-members-empty" class="mt-3 text-sm font-light">
-              Nenhum membro adicionado.
-            </p>
-            <ul
-              id="team-members"
-              class="mt-3 hidden max-h-40 flex-wrap gap-2 overflow-y-auto p-0.5"
-            ></ul>
-          </div>
-
-          <div
-            class="flex flex-col-reverse gap-3 pt-2 sm:flex-row sm:justify-end"
-          >
-            <button
-              type="button"
-              data-close-modal
-              class="cursor-pointer rounded-2xl h-11 px-5 sm:h-10 bg-base-grey dark:bg-bold-dark hover:font-bold transition-all"
-            >
-              Cancelar
-            </button>
-            <button
-              type="submit"
-              class="cursor-pointer rounded-2xl h-11 px-5 sm:h-10 font-bold bg-bold-dark text-bold-light dark:bg-bold-light dark:text-bold-dark hover:opacity-90 transition-opacity"
-            >
-              Criar equipe
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-
-    <!-- Template do chip de membro (dentro do modal de equipe) -->
-    <template id="team-member-template">
-      <li
-        class="flex max-w-full items-center gap-1 rounded-full bg-base-grey py-1 pr-1 pl-3 text-sm dark:bg-bold-dark"
-      >
-        <span data-member-name class="truncate"></span>
-        <button
-          type="button"
-          data-remove-member
-          class="flex size-6 shrink-0 cursor-pointer items-center justify-center rounded-full hover:bg-base-dark/20 dark:hover:bg-base-light/20 transition-colors"
-        >
-          <svg
-            class="size-4 dark:fill-base-light fill-base-dark"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 -960 960 960"
-          >
-            <path
-              d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"
-            />
-          </svg>
-        </button>
-      </li>
-    </template>
-
-    <!-- Template do card criado pelo modal de equipe -->
-    <template id="team-card-template">
-      <div
-        class="bg-base-grey min-h-35 mt-5 rounded-2xl pb-3 dark:bg-bold-dark hover:scale-110 hover:shadow-lg transition-all flex flex-col gap-3"
-      >
-        <h2
-          data-field="nome"
-          class="text-bold-dark font-bold text-lg pt-3 ml-5 pr-5 wrap-break-word dark:text-bold-light"
-        ></h2>
-        <p
-          class="text-base-dark font-light ml-5 pr-5 wrap-break-word dark:text-base-light text-sm"
-        >
-          Responsável: <span data-field="responsavel"></span>
-        </p>
-        <div>
-          <p
-            class="text-base-dark font-light ml-5 dark:text-base-light text-sm"
-          >
-            Membros:
-          </p>
-          <p
-            data-field="membros"
-            class="text-base-dark font-light ml-5 pr-5 wrap-break-word dark:text-base-light"
-          ></p>
-        </div>
       </div>
     </template>
 
@@ -990,172 +705,6 @@
           };
 
           const card = template.content.firstElementChild.cloneNode(true);
-          card.querySelectorAll("[data-field]").forEach((el) => {
-            el.textContent = values[el.dataset.field];
-          });
-
-          grid.prepend(card);
-          closeModal();
-        });
-      })();
-    </script>
-    <script>
-      (() => {
-        const modal = document.getElementById("team-modal");
-        const form = document.getElementById("team-form");
-        const openBtn = document.getElementById("open-team-modal");
-        const grid = document.getElementById("teams-grid");
-        const cardTemplate = document.getElementById("team-card-template");
-        const chipTemplate = document.getElementById("team-member-template");
-
-        const memberInput = document.getElementById("team-membro");
-        const addBtn = document.getElementById("team-add-member");
-        const list = document.getElementById("team-members");
-        const emptyHint = document.getElementById("team-members-empty");
-        const msg = document.getElementById("team-members-msg");
-
-        let members = [];
-
-        const isOpen = () => !modal.classList.contains("hidden");
-
-        // Mensagem sob o campo de membros (vazia = sem erro)
-        const setMessage = (text = "") => {
-          msg.textContent = text;
-          if (text) memberInput.setAttribute("aria-invalid", "true");
-          else memberInput.removeAttribute("aria-invalid");
-        };
-
-        const renderMembers = () => {
-          list.replaceChildren(
-            ...members.map((name, i) => {
-              const chip =
-                chipTemplate.content.firstElementChild.cloneNode(true);
-              chip.dataset.index = i;
-              chip.querySelector("[data-member-name]").textContent = name;
-              chip
-                .querySelector("[data-remove-member]")
-                .setAttribute("aria-label", `Remover ${name}`);
-              return chip;
-            }),
-          );
-          list.classList.toggle("hidden", members.length === 0);
-          list.classList.toggle("flex", members.length > 0);
-          emptyHint.classList.toggle("hidden", members.length > 0);
-        };
-
-        // Aceita um nome ou vários separados por vírgula/ponto e vírgula.
-        // Repetidos (sem diferenciar maiúsculas) ficam no campo e geram aviso.
-        // Retorna true se não sobrou nada pendente.
-        const addMembers = () => {
-          const names = memberInput.value
-            .split(/[,;]/)
-            .map((n) => n.trim().replace(/\s+/g, " "))
-            .filter(Boolean);
-
-          const duplicates = [];
-          for (const name of names) {
-            const exists = members.some(
-              (m) => m.toLowerCase() === name.toLowerCase(),
-            );
-            if (exists) duplicates.push(name);
-            else members.push(name);
-          }
-
-          memberInput.value = duplicates.join(", ");
-          setMessage(
-            duplicates.length
-              ? `Já está na lista: ${duplicates.join(", ")}.`
-              : "",
-          );
-          renderMembers();
-          return duplicates.length === 0;
-        };
-
-        const openModal = () => {
-          modal.classList.remove("hidden");
-          modal.classList.add("flex");
-          document.body.classList.add("overflow-hidden");
-          form.elements.nome.focus();
-        };
-
-        const closeModal = () => {
-          modal.classList.add("hidden");
-          modal.classList.remove("flex");
-          document.body.classList.remove("overflow-hidden");
-          form.reset();
-          members = [];
-          setMessage();
-          renderMembers();
-          openBtn.focus();
-        };
-
-        openBtn.addEventListener("click", openModal);
-
-        modal
-          .querySelectorAll("[data-close-modal]")
-          .forEach((el) => el.addEventListener("click", closeModal));
-
-        // Clique no fundo escuro fecha o modal
-        modal.addEventListener("click", (e) => {
-          if (e.target === modal) closeModal();
-        });
-
-        document.addEventListener("keydown", (e) => {
-          if (e.key === "Escape" && isOpen()) closeModal();
-        });
-
-        // --- Lista de membros ---
-        addBtn.addEventListener("click", () => {
-          if (!memberInput.value.trim()) {
-            setMessage("Digite o nome do membro.");
-          } else {
-            addMembers();
-          }
-          memberInput.focus();
-        });
-
-        memberInput.addEventListener("keydown", (e) => {
-          if (e.key !== "Enter" || e.isComposing) return;
-          e.preventDefault(); // Enter adiciona o membro, não envia o formulário
-          if (memberInput.value.trim()) addMembers();
-        });
-
-        memberInput.addEventListener("input", () => {
-          if (msg.textContent) setMessage();
-        });
-
-        list.addEventListener("click", (e) => {
-          const btn = e.target.closest("[data-remove-member]");
-          if (!btn) return;
-          members.splice(Number(btn.closest("li").dataset.index), 1);
-          setMessage();
-          renderMembers();
-          memberInput.focus();
-        });
-
-        form.addEventListener("submit", (e) => {
-          e.preventDefault();
-
-          // Nome digitado e ainda não adicionado conta como membro
-          if (!addMembers()) {
-            memberInput.focus();
-            return;
-          }
-          if (members.length === 0) {
-            setMessage("Adicione pelo menos um membro.");
-            memberInput.focus();
-            return;
-          }
-
-          const data = new FormData(form);
-          const values = {
-            nome: data.get("nome").trim(),
-            responsavel: data.get("responsavel").trim(),
-            membros: members.join(", "),
-          };
-
-          const card = cardTemplate.content.firstElementChild.cloneNode(true);
-          // textContent evita injeção de HTML pelo que o usuário digitar
           card.querySelectorAll("[data-field]").forEach((el) => {
             el.textContent = values[el.dataset.field];
           });
